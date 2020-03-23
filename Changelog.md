@@ -1,3 +1,9 @@
+# 1.1.1 - 23/03/2020
+
+### Fixed
+
+- If `--async` flag don't use queue.
+
 # 1.1.0 - 23/03/2020
 
 ### Changed
