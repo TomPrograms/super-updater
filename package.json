@@ -2,7 +2,7 @@
   "name": "super-updater",
   "version": "1.0.0",
   "bin": {
-    "super-updater": "./bin/super-updater"
+    "super-updater": "./bin/superUpdater"
   },
   "description": "A simple, reliable package to ensure all dependencies and dev dependencies are updated, with no lag time.",
   "main": "index.js",
