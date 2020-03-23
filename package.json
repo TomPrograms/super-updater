@@ -8,7 +8,7 @@
   "main": "index.js",
   "repository": "tomprograms/super-updater",
   "scripts": {
-    "format": "prettier --write {**,**/**}/*.{js,md,css}"
+    "format": "prettier --write {**,**/**}/*.{js,md,css} --print-width 150"
   },
   "author": "Tom",
   "license": "MIT",
