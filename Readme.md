@@ -16,11 +16,11 @@
 
 ## Inspiration
 
-I wanted a fast and quick solution in order to update all my NPM dependencies, while hopefully eliminating a lag time I sometimes experienced with packages which had just been updated (it does this by directly querying the registry for package information), so I built super updater. Super updater allows you to update all your NPM dependencies quickly and reliably.
+I wanted a fast and quick solution in order to update all my NPM dependencies, while hopefully eliminating a lag time I sometimes experienced with packages which had just been updated, so I built super updater. Super updater allows you to update all your NPM dependencies quickly and reliably.
 
 ## Design
 
-Super updater and only updates the packages in `package.json`, and only if the version specified in the `package.json` doesn't match the version of the most recent release defined on the NPM repository.
+Super updater and only updates the packages in `package.json`, and only if the version specified in the `package.json` doesn't match the version of the most recent release defined on the NPM repository. Super updater attempts to eliminate the standard NPM updater's lag time by directly querying the NPM repository for package information.
 
 ## Usage
 
