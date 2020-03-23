@@ -32,7 +32,7 @@ const getPackageVersion = async function (name) {
 const updatePackages = async function (packages, async) {
   // get all package versions
   const updatePackage = async function (package) {
-    const promise = new Promise(function (resolve, reject) {
+    await new Promise(function (resolve, reject) {
       getPackageVersion(package.name)
         .then((version) => {
           if (package.current === version) {
@@ -57,12 +57,11 @@ const updatePackages = async function (packages, async) {
           } else reject(error);
         });
     });
-
-    if (!async) await promise;
   };
 
   packages.forEach((package) => {
-    queue.add(() => updatePackage(package));
+    if (!async) queue.add(() => updatePackage(package));
+    else updatePackage(package);
   });
 };
 
