@@ -12,7 +12,9 @@
   },
   "author": "Tom",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^2.0.1"
+  },
   "dependencies": {
     "chalk": "^3.0.0",
     "phin": "^3.4.1",
