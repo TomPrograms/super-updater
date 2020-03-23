@@ -1,0 +1,29 @@
+{
+  "name": "super-updater",
+  "version": "1.0.0",
+  "bin": {
+    "super-updater": "./bin/super-updater"
+  },
+  "description": "A simple, reliable package to ensure all dependencies and dev dependencies are updated.",
+  "main": "index.js",
+  "repository": "tomprograms/super-updater",
+  "scripts": {
+    "format": "prettier --write {**,**/**}/*.{js,md,css}"
+  },
+  "author": "Tom",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "phin": "^3.4.1",
+    "promise-queue": "^2.2.5"
+  },
+  "files": [
+    "LICENSE",
+    "Changelog.md",
+    "Readme.md",
+    "index.js",
+    "src/",
+    "bin/"
+  ]
+}
