@@ -42,6 +42,12 @@ If you didn't install super updater globally you will have to go to an environme
 npx super-updater -t package.json
 ```
 
+You can allow new updates to be started and checked for before the previous update is finished with the `--async` flag.
+
+```
+super-updater -t package.json --async
+```
+
 If you don't want to update dev dependencies, you can supply the `--no-dev` argument.
 
 ```
