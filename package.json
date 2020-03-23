@@ -25,5 +25,11 @@
     "index.js",
     "src/",
     "bin/"
+  ],
+  "keywords": [
+    "npm",
+    "updater",
+    "npm-updater",
+    "package-updater"
   ]
 }
