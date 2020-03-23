@@ -5,7 +5,7 @@ const phin = require("phin");
 const chalk = require("chalk");
 const Queue = require("promise-queue");
 
-var queue = new Queue(1, Infinity);
+const queue = new Queue(1, Infinity);
 
 const runCommand = function (command) {
   return new Promise(function (resolve, reject) {
@@ -29,10 +29,10 @@ const getPackageVersion = async function (name) {
   return data.body["dist-tags"].latest;
 };
 
-const updatePackages = async function (packages) {
+const updatePackages = async function (packages, async) {
   // get all package versions
-  const updatePackage = function (package) {
-    new Promise(function (resolve, reject) {
+  const updatePackage = async function (package) {
+    const promise = new Promise(function (resolve, reject) {
       getPackageVersion(package.name)
         .then((version) => {
           if (package.current === version) {
@@ -57,6 +57,8 @@ const updatePackages = async function (packages) {
           } else reject(error);
         });
     });
+
+    if (!async) await promise;
   };
 
   packages.forEach((package) => {
@@ -69,7 +71,7 @@ function adaptVersion(version) {
   return version;
 }
 
-const superUpdater = function (path, noMain = false, noDev = false) {
+const superUpdater = function (path, noMain = false, noDev = false, async = false) {
   fs.readFile(path, function (error, data) {
     if (error) throw error;
     try {
@@ -106,7 +108,7 @@ const superUpdater = function (path, noMain = false, noDev = false) {
       toCheck = toCheck.concat(getDependencies(devDependencies));
     }
 
-    updatePackages(toCheck);
+    updatePackages(toCheck, async);
   });
 };
 
@@ -116,9 +118,11 @@ const parseArguments = function (args) {
   let target;
   let noMain = false;
   let noDev = false;
+  let async = false;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--no-main") noMain = true;
     if (args[i] === "--no-dev") noDev = true;
+    if (args[i] === "--async") async = true;
     if (args[i] === "-t") {
       i++;
       target = args[i];
@@ -130,7 +134,7 @@ const parseArguments = function (args) {
     target = path.resolve(target);
   }
 
-  superUpdater(target, noMain, noDev);
+  superUpdater(target, noMain, noDev, async);
 };
 
 module.exports = superUpdater;
