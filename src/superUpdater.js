@@ -23,7 +23,7 @@ const getPackageVersion = async function (name) {
   });
 
   if (data.body.error === "Not found") {
-    throw new Error("PACKAGE-404")
+    throw new Error("PACKAGE-404");
   }
 
   return data.body["dist-tags"].latest;
@@ -31,7 +31,7 @@ const getPackageVersion = async function (name) {
 
 const updatePackages = async function (packages) {
   // get all package versions
-  const updatePackage = function(package) {
+  const updatePackage = function (package) {
     new Promise(function (resolve, reject) {
       getPackageVersion(package.name)
         .then((version) => {
@@ -54,8 +54,7 @@ const updatePackages = async function (packages) {
         .catch((error) => {
           if (error.message === "PACKAGE-404" || error.message === "Cannot read property 'latest' of undefined") {
             console.log(chalk.red(`Skipping ${package.name} - couldn't find it in the NPM registry.`));
-          }
-          else reject(error);
+          } else reject(error);
         });
     });
   };
