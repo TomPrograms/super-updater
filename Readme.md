@@ -42,7 +42,7 @@ If you didn't install super updater globally you will have to go to an environme
 npx super-updater -t package.json
 ```
 
-You can allow new updates to be started and checked for before the previous update is finished with the `--async` flag.
+You can allow new updates to be started and checked for before the previous update is finished with the `--async` flag. This may cause errors.
 
 ```
 super-updater -t package.json --async
