@@ -1,8 +1,11 @@
 # 1.1.0 - 23/03/2020
 
 ### Changed
-- Made Package Version Checking Occur Between Updating Packages
+- Made Package Version Checking Occur Between Updating Packages.
 
+### Added
+- Added `--async` flag to allow new updates to be started and checked for before previous one is finished.
+ 
 # 1.0.0 - 23/03/2020
 
-- 🎉 Initial Release of Super-Updater
+- 🎉 Initial Release of Super-Updater.
