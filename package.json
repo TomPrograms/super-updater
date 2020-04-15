@@ -13,10 +13,10 @@
   "author": "Tom",
   "license": "MIT",
   "devDependencies": {
-    "prettier": "^2.0.1"
+    "prettier": "^2.0.4"
   },
   "dependencies": {
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "phin": "^3.4.1",
     "promise-queue": "^2.2.5"
   },
