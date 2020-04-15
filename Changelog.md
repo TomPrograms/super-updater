@@ -1,3 +1,9 @@
+# 1.2.0 - 15/04/2020
+
+### Removed
+
+- Removed async mode, as it potentially causes errors.
+
 # 1.1.1 - 23/03/2020
 
 ### Fixed
