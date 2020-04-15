@@ -29,10 +29,10 @@ const getPackageVersion = async function (name) {
   return data.body["dist-tags"].latest;
 };
 
-const updatePackages = async function (packages, async) {
+const updatePackages = function (packages) {
   // get all package versions
-  const updatePackage = async function (package) {
-    await new Promise(function (resolve, reject) {
+  const updatePackage = function (package) {
+    return new Promise(function (resolve, reject) {
       getPackageVersion(package.name)
         .then((version) => {
           if (package.current === version) {
@@ -60,8 +60,7 @@ const updatePackages = async function (packages, async) {
   };
 
   packages.forEach((package) => {
-    if (!async) queue.add(() => updatePackage(package));
-    else updatePackage(package);
+    queue.add(() => updatePackage(package));
   });
 };
 
@@ -70,7 +69,7 @@ function adaptVersion(version) {
   return version;
 }
 
-const superUpdater = function (path, noMain = false, noDev = false, async = false) {
+const superUpdater = function (path, noMain = false, noDev = false) {
   fs.readFile(path, function (error, data) {
     if (error) throw error;
     try {
@@ -107,7 +106,7 @@ const superUpdater = function (path, noMain = false, noDev = false, async = fals
       toCheck = toCheck.concat(getDependencies(devDependencies));
     }
 
-    updatePackages(toCheck, async);
+    updatePackages(toCheck);
   });
 };
 
@@ -117,11 +116,9 @@ const parseArguments = function (args) {
   let target;
   let noMain = false;
   let noDev = false;
-  let async = false;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--no-main") noMain = true;
     if (args[i] === "--no-dev") noDev = true;
-    if (args[i] === "--async") async = true;
     if (args[i] === "-t") {
       i++;
       target = args[i];
@@ -133,7 +130,7 @@ const parseArguments = function (args) {
     target = path.resolve(target);
   }
 
-  superUpdater(target, noMain, noDev, async);
+  superUpdater(target, noMain, noDev);
 };
 
 module.exports = superUpdater;
